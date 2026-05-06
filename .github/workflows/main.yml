@@ -4,9 +4,20 @@ on:
   push:
     branches: [main]
 
+permissions:
+  pages: write
+  id-tokern: write 
+  contents: read
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+   
+    environment:
+      name: github pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+
     steps:
       - name: Code checkout
         uses: actions/checkout@v4
@@ -16,5 +27,19 @@ jobs:
           docker build -t website ./frontend
           docker build -t my-website ./backend
       
+      - name: upload static files
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: "."
+
       - name: Run Containers
         run: docker compose up -d --build
+
+
+      - name: upload artifactes
+        uses: actions/upload-pages-artifacts@v4
+        with:
+          path: "."
+
+      - name: deploy to github pages
+        uses: actions/deploy-pages@v4
