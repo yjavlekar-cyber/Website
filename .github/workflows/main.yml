@@ -28,7 +28,7 @@ jobs:
 
 
       - name: upload-artifactes
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: "./frontend"
 
@@ -36,3 +36,6 @@ jobs:
       - name: deploy-to-github pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+
+
