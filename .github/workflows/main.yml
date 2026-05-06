@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-﻿name: New website
+name: New website
 on:
   push:
     branches: [main]
@@ -18,23 +17,3 @@ jobs:
       
       - name: Run Containers
         run: docker compose up -d --build
-=======
-name: New website
-on:
-  push:
-    branches: [main]
-jobs:
-
-  built and push: 
-    runs-on: ubuntu
-
-  steps:
-    - name: Code checkout
-      uses: actions/checkout@v4
-    - name: build and push
-      run: |
-       docker build -t website ./frontend
-       docker build -t my-website ./backend
-    - name: Deploy
-      run: docker compose up -d --build --force --recreate
->>>>>>> 63d00e1001925142deab876f468205a7a59d203d
