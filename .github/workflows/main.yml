@@ -26,11 +26,6 @@ jobs:
         run: |
           docker build -t website ./frontend
           docker build -t my-website ./backend
-      
-      - name: upload static files
-        uses: actions/upload-pages-artifact@v4
-        with:
-          path: "."
 
       - name: Run Containers
         run: docker compose up -d --build
