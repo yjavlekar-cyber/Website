@@ -6,7 +6,7 @@ on:
 
 permissions:
   pages: write
-  id-tokern: write 
+  id-token: write
   contents: read
 
 jobs:
