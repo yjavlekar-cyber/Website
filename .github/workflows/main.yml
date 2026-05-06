@@ -30,7 +30,7 @@ jobs:
       - name: upload-artifactes
         uses: actions/upload-pages-artifact@v4
         with:
-          path: "./frontend"
+          path: "./frontend/Images"
 
 
       - name: deploy-to-github pages
