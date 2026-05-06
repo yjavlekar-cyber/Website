@@ -18,30 +18,24 @@ jobs:
       - name: Code checkout
         uses: actions/checkout@v4
 
-      - name: Build Images
+      - name: Build-Images
         run: |
           docker build -t website ./frontend
           docker build -t my-website ./backend
 
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-
-
     environment:
-      - name: github pages
+      - name: githuh-pages
          url: ${{ steps.deployment.outputs.page_url }}
 
-
-      - name: Run Containers
+      - name: Run-containers
         run: docker compose up -d --build
 
 
-      - name: upload artifactes
-        uses: actions/upload-pages-artifacts@v4
+      - name: upload-artifactes
+        uses: actions/upload-pages-artifact@v4
         with:
           path: "."
 
 
-      - name: deploy to github pages
+      - name: deploy-to-github pages
         uses: actions/deploy-pages@v4
