@@ -12,10 +12,6 @@ permissions:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-   
-    environment:
-      name: github pages
-      url: ${{ steps.deployment.outputs.page_url }}
 
 
     steps:
@@ -27,6 +23,16 @@ jobs:
           docker build -t website ./frontend
           docker build -t my-website ./backend
 
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+
+    environment:
+      name: github pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+
       - name: Run Containers
         run: docker compose up -d --build
 
@@ -35,6 +41,7 @@ jobs:
         uses: actions/upload-pages-artifacts@v4
         with:
           path: "."
+
 
       - name: deploy to github pages
         uses: actions/deploy-pages@v4
